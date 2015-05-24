@@ -90,12 +90,13 @@ namespace extensions\bootstrap_views{
                 parent::add($item);
             }elseif(is_object($name) && $name instanceof view_dropdown){
                 $item = new html_li(array('role' => 'presentation', 'class' => 'dropdown'));
-                $dropdown_menu = $name->find('.dropdown-menu')->detach();
+                //$dropdown_menu = $name->find('.dropdown-menu')->detach();
                 $caret = $name->find('.caret')->detach();
                 $label = $name->find('button')->text();
                 $id = $name->find('button')->attr('id'); //Shift the id to the a tag so aria-labelledby is correct
                 $item->add(new html_a(array($label, $caret->get(0)), array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'href' => '#', 'role' => 'button', 'aria-expanded' => 'false', 'id' => $id)));
-                $item->add($dropdown_menu->get(0));
+                //$item->add($dropdown_menu->get(0));
+                $item->add($name->find('.dropdown-menu')->get(0));
                 parent::add($item);
             }
         }
