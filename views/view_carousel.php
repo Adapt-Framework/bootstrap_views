@@ -7,8 +7,10 @@ namespace extensions\bootstrap_views{
         const NONE = '';
         const SLIDE = 'slide';
         
-        public function __construct($items = array(), $show_indicators = true, $show_controls = true, $transition = self::SLIDE){
+        public function __construct($show_indicators = true, $show_controls = true, $transition = self::SLIDE){
             parent::__construct('div');
+            $this->set_id();
+            $this->attr('data-ride', 'carousel');
             
             parent::add(new html_ol(array('class' => 'carousel-indicators')));
             parent::add(new html_div(array('class' => 'carousel-inner', 'role' => 'listbox')));
@@ -83,8 +85,20 @@ namespace extensions\bootstrap_views{
             }
         }
         
-        public function add($slide){
+        public function add($slide, $caption = null){
+            $item = new html_div($slide, array('class' => 'item'));
+            if (!is_null($caption)){
+                $item->add(new html_div($caption, array('class' => 'carousel-caption')));
+            }
             
+            $indicator = new html_li(array('data-target' => '#' . $this->attr('id'), 'data-slide-to' => "{$this->find('.carousel-inner .item')->size()}"));
+            
+            if ($this->find('.carousel-inner .item')->size() == 0){
+                $item->add_class('active');
+                $indicator->add_class('active');
+            }
+            $this->find('.carousel-indicators')->append($indicator);
+            $this->find('.carousel-inner')->append($item);
         }
     }
     
