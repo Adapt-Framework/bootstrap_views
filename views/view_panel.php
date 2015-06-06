@@ -4,7 +4,7 @@ namespace extensions\bootstrap_views{
     
     class view_panel extends view{
         
-        const NORMAL = '';
+        const NORMAL = 'panel-default';
         const PRIMARY = 'panel-primary';
         const SUCCESS = 'panel-success';
         const INFO = 'panel-info';
@@ -16,13 +16,13 @@ namespace extensions\bootstrap_views{
         protected $_footer;
         
         public function __construct($content = null, $title = null, $style = self::NORMAL){
-            parent::__construct('div');
             $this->_heading = new html_div(array('class' => 'panel-heading'));
             $this->_body = new html_div(array('class' => 'panel-body'));
             $this->_footer = new html_div(array('class' => 'panel-footer'));
-            parent::add($this->_heading, $this->_body, $this->_footer);
+            parent::__construct('div');
+            parent::add(array($this->_heading, $this->_body, $this->_footer));
             
-            $this->body->add($content);
+            $this->_body->add($content);
             $this->title = $title;
             $this->style = $style;
         }
@@ -38,15 +38,17 @@ namespace extensions\bootstrap_views{
                 return self::WARNING;
             }elseif($this->has_class(self::DANGER)){
                 return self::DANGER;
+            }elseif($this->has_class(self::NORMAL)){
+                return self::NORMAL;
+            }else{
+                return self::NORMAL;
             }
-            
-            return self::NORMAL;
         }
         
         public function pset_style($style){
             $classes = array(
                 self::PRIMARY, self::SUCCESS, self::INFO,
-                self::WARNING, self::DANGER
+                self::WARNING, self::DANGER, self::NORMAL
             );
             
             foreach($classes as $class){
@@ -66,7 +68,7 @@ namespace extensions\bootstrap_views{
             if ($this->_heading->find('.panel-title')->size() > 0){
                 if (!is_object($title) && is_string($title) && $title != ""){
                     $this->_heading->find('.panel-title')->text($title);
-                }elseif(is_object($title) && $title instanceof frameworks\adapt\html){
+                }elseif(is_object($title) && $title instanceof \frameworks\adapt\html){
                     $this->_heading->find('.panel-title')->detach();
                     if (strlen($title->tag) == 2 && substr($title->tag, 0, 1) == 'h'){
                         $title->add_class('panel-title');
@@ -76,8 +78,8 @@ namespace extensions\bootstrap_views{
                 }
             }else{
                 if (!is_object($title) && is_string($title) && $title != ""){
-                    $this->_heading->add(new html_h3($title, array('class' => 'panel-heading')));
-                }elseif(is_object($title) && $title instanceof frameworks\adapt\html){
+                    $this->_heading->add(new html_h3($title, array('class' => 'panel-title')));
+                }elseif(is_object($title) && $title instanceof \frameworks\adapt\html){
                     if (strlen($title->tag) == 2 && substr($title->tag, 0, 1) == 'h'){
                         $title->add_class('panel-title');
                     }
@@ -102,7 +104,7 @@ namespace extensions\bootstrap_views{
         public function add($item){
             if (is_array($item)) foreach($item as $i) $this->add($i);
             
-            if (is_object($item) && $item instanceof html){
+            if (is_object($item) && $item instanceof \frameworks\adapt\html){
                 if ($item->tag == 'table' && $item->has_class('table')){
                     parent::add($item);
                 }elseif($item instanceof view_list_group){
@@ -116,7 +118,7 @@ namespace extensions\bootstrap_views{
         }
         
         public function render(){
-            if ($this->_header->count() == 0){
+            if ($this->_heading->count() == 0){
                 $this->find('.panel-header')->detach();
             }
             
