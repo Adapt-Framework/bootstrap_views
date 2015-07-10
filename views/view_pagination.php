@@ -14,6 +14,7 @@ namespace extensions\bootstrap_views{
             $this->remove_class('pagination');
             
             $ul = new html_ul(array('class' => 'pagination'));
+            $this->add($ul);
             
             $first_page = 1;
             $last_page = 10;
@@ -36,11 +37,11 @@ namespace extensions\bootstrap_views{
                 $ul->add(new htmL_li(new html_a(new html_span('&laquo', array('aria-hidden' => 'true')), array('href' => sprintf($base_url, 1)))));
             }
             
-            for($i = $first_page; $i < $last_page; $i++){
+            for($i = $first_page; $i <= $last_page; $i++){
                 if ($i == $current_page){
-                    $this->add(new html_li(new html_a($i, array('href' => sprintf($base_url, $i))), array('class' => 'active')));
+                    $ul->add(new html_li(new html_a($i, array('href' => sprintf($base_url, $i))), array('class' => 'active')));
                 }else{
-                    $this->add(new html_li(new html_a($i, array('href' => sprintf($base_url, $i)))));
+                    $ul->add(new html_li(new html_a($i, array('href' => sprintf($base_url, $i)))));
                 }
             }
             

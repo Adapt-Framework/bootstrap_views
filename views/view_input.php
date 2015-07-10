@@ -32,6 +32,8 @@ namespace extensions\bootstrap_views{
             if (!is_null($value)){
                 $this->attr('value', $value);
             }
+            
+            $this->size = $size;
         }
         
         public function pget_disabled(){

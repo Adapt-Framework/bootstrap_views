@@ -85,70 +85,117 @@ namespace extensions\bootstrap_views{
         }
         
         public function convert_form_group($form_group, $horizontal = true){
-            if (is_object($form_group) && $form_group instanceof view_form_group){
-                $label = $form_group->find('label')->get(0);
-                $control = $form_group->find('.input-group');
-                if ($control->size() == 0){
-                    $control = $form_group->find('input');
-                }
-                
-                if ($control->size() == 0){
-                    $control = $form_group->find('textarea');
-                }
-                
-                if ($control->size() == 0){
-                    $control = $form_group->find('select');
-                }
-                
-                if ($control->size() == 0){
-                    $control = $form_group->find('.form-control-static');
-                }
-                $control = $control->get(0);
-                
-                $icon = $form_group->find('.view.icon')->get(0);
-                $help_text = $form_group->find('.help-block')->get(0);
-                
-                $form_group->clear();
-                
-                if ($horizontal == true){
-                    if ($label instanceof \frameworks\adapt\html){
-                        for($i = 1; $i <= 12; $i++) $label->remove_class('col-sm-' . $i);
-                        $label->add_class('col-sm-' . $this->label_cols);
-                        $form_group->add($label);
+            
+            if ($horizontal && is_object($form_group) && $form_group instanceof \frameworks\adapt\html){
+                $groups = $form_group->find('.form-group');
+                foreach($groups->get() as $group){
+                    $label = $group->find('label');
+                    $control = $label->next();
+                    $icon = $group->find('.view.icon');
+                    $help_text = $group->find('.help-block');
+                    
+                    for ($i = 1; $i <= 12; $i++){
+                        $label->remove_class('col-xs-' . $i);
+                        $label->remove_class('col-sm-' . $i);
+                        $label->remove_class('col-md-' . $i);
+                        $label->remove_class('col-lg-' . $i);
+                        $control->remove_class('col-xs-' . $i);
+                        $control->remove_class('col-sm-' . $i);
+                        $control->remove_class('col-md-' . $i);
+                        $control->remove_class('col-lg-' . $i);
+                        $icon->remove_class('col-xs-' . $i);
+                        $icon->remove_class('col-sm-' . $i);
+                        $icon->remove_class('col-md-' . $i);
+                        $icon->remove_class('col-lg-' . $i);
+                        $help_text->remove_class('col-xs-' . $i);
+                        $help_text->remove_class('col-sm-' . $i);
+                        $help_text->remove_class('col-md-' . $i);
+                        $help_text->remove_class('col-lg-' . $i);
                     }
                     
-                    $form_group->add(new html_div(array($control, $icon), array('class' => 'col-sm-' . $this->control_cols)));
+                    $label->add_class('col-sm-2');
+                    $control = $control->detach();
                     
-                    if ($help_text instanceof \frameworks\adapt\html){
-                        for($i = 1; $i <= 12; $i++){
-                            $help_text->remove_class('col-sm-' . $i);
-                            $help_text->remove_class('col-sm-offset-' . $i);
-                            $help_text->add_class('col-sm-' . $this->control_cols);
-                            $help_text->add_class('col-sm-offset-' . $this->label_cols);
-                        }
-                        
-                        $form_group->add($help_text);
-                    }
+                    $col = new html_div($control->get(0), array('class' => 'col-sm-10'));
                     
-                }else{
-                    if ($label instanceof \frameworks\adapt\html){
-                        for($i = 1; $i <= 12; $i++) $label->remove_class('col-sm-' . $i);
-                        $form_group->add($label);
-                    }
+                    $group->add($col);
                     
-                    $form_group->add(array($control, $icon));
+                    $icon = $icon->detach();
+                    $col->add($icon->get(0));
                     
-                    if ($help_text instanceof \frameworks\adapt\html){
-                        for($i = 1; $i <= 12; $i++){
-                            $help_text->remove_class('col-sm-' . $i);
-                            $help_text->remove_class('col-sm-offset-' . $i);
-                        }
-                        
-                        $form_group->add($help_text);
-                    }
+                    $help_text = $help_text->detach();
+                    $col->add($help_text->get(0));
+                    
                 }
-                
             }
+            
+            //if (is_object($form_group) && $form_group instanceof view_form_group){
+            //    print 'c';
+            //    $label = $form_group->find('label')->get(0);
+            //    $control = $form_group->find('.input-group');
+            //    if ($control->size() == 0){
+            //        $control = $form_group->find('input');
+            //    }
+            //    
+            //    if ($control->size() == 0){
+            //        $control = $form_group->find('textarea');
+            //    }
+            //    
+            //    if ($control->size() == 0){
+            //        $control = $form_group->find('select');
+            //    }
+            //    
+            //    if ($control->size() == 0){
+            //        $control = $form_group->find('.form-control-static');
+            //    }
+            //    $control = $control->get(0);
+            //    
+            //    $icon = $form_group->find('.view.icon')->get(0);
+            //    $help_text = $form_group->find('.help-block')->get(0);
+            //    
+            //    $form_group->clear();
+            //    
+            //    if ($horizontal == true){
+            //        print 'bar';
+            //        if ($label instanceof \frameworks\adapt\html){
+            //            print 'foo';
+            //            for($i = 1; $i <= 12; $i++) $label->remove_class('col-sm-' . $i);
+            //            $label->add_class('col-sm-' . $this->label_cols);
+            //            $form_group->add($label);
+            //        }
+            //        
+            //        $form_group->add(new html_div(array($control, $icon), array('class' => 'col-sm-' . $this->control_cols)));
+            //        
+            //        if ($help_text instanceof \frameworks\adapt\html){
+            //            for($i = 1; $i <= 12; $i++){
+            //                $help_text->remove_class('col-sm-' . $i);
+            //                $help_text->remove_class('col-sm-offset-' . $i);
+            //                $help_text->add_class('col-sm-' . $this->control_cols);
+            //                $help_text->add_class('col-sm-offset-' . $this->label_cols);
+            //            }
+            //            
+            //            $form_group->add($help_text);
+            //        }
+            //        
+            //    }else{
+            //        if ($label instanceof \frameworks\adapt\html){
+            //            for($i = 1; $i <= 12; $i++) $label->remove_class('col-sm-' . $i);
+            //            $form_group->add($label);
+            //        }
+            //        
+            //        $form_group->add(array($control, $icon));
+            //        
+            //        if ($help_text instanceof \frameworks\adapt\html){
+            //            for($i = 1; $i <= 12; $i++){
+            //                $help_text->remove_class('col-sm-' . $i);
+            //                $help_text->remove_class('col-sm-offset-' . $i);
+            //            }
+            //            
+            //            $form_group->add($help_text);
+            //        }
+            //    }
+            //    
+            //}
             
             return $form_group;
         }
