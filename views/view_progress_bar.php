@@ -16,6 +16,10 @@ namespace extensions\bootstrap_views{
             $this->add_class('progress');
             $bar = new html_div(new html_span("{$percentage_complete}%", array('class' => 'sr-only')), array('class' => 'progress-bar', 'role' => 'progressbar', 'aria-valuenow' => $percentage_complete, 'aria-valuemin' => 0, 'aria-valuemax' => 100, 'style' => "width: {$percentage_complete}%"));
             $this->add($bar);
+            $this->show_label = $show_label;
+            $this->style = $style;
+            $this->striped = $striped;
+            $this->animated = $animated;
         }
         
         public function pget_percentage_complete(){
@@ -56,9 +60,9 @@ namespace extensions\bootstrap_views{
         
         public function pset_show_label($value){
             if ($value == true){
-                $this->find('progress-bar span')->remove_class('sr-only');
+                $this->find('.progress-bar span')->remove_class('sr-only');
             }else{
-                $this->find('progress-bar span')->add_class('sr-only');
+                $this->find('.progress-bar span')->add_class('sr-only');
             }
         }
         
