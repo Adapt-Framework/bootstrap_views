@@ -4,10 +4,10 @@
 This is the foundation class for all bootstrap views.
 
 ## Table of Contents
-### [Constants][#Contants]
-### [Constructing](#Constructing)
-### [Properties](#Properties)
-#### [float](#float)
+    - ### [Constants](#Constants)
+    - ### [Constructing](#Constructing)
+    - ### [Properties](#Properties)
+    #### [float](#float)
 #### [center_block](#center_block)
 #### [hidden](#hidden)
 #### [visible](#visible)
