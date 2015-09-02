@@ -1,5 +1,5 @@
 # Class `view_alert`
-**Inherits from: ** [view](view.md)
+**Inherits from:** [view](view.md)
 
 Creates bootstrap style alerts.
 
