@@ -1,6 +1,6 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
     class view_responsive_embed extends view{
         
@@ -31,7 +31,7 @@ namespace extensions\bootstrap_views{
         
         public function add($item){
             $this->clear(); //Remove all current children
-            if (is_object($item) && $item instanceof frameworks\adapt\html && in_array($item->tag, array('iframe', 'embed', 'video', 'object'))){
+            if (is_object($item) && $item instanceof \adapt\html && in_array($item->tag, array('iframe', 'embed', 'video', 'object'))){
                 $item->add_class('embed-responsive-item');
             }
             

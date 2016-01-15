@@ -1,6 +1,6 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
     class view_jumbotron extends view{
         

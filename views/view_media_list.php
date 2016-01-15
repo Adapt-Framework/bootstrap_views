@@ -1,6 +1,6 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
     class view_media_list extends view{
         
@@ -16,7 +16,7 @@ namespace extensions\bootstrap_views{
             $this->remove_class('media-list');
             $this->add_class('media');
             
-            if ($media_item instanceof frameworks\adapt\html){
+            if ($media_item instanceof \adapt\html){
                 $media_item->add_class('media-object');
             }
             

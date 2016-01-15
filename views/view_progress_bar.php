@@ -1,6 +1,6 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
     class view_progress_bar extends view{ //NOT TESTED
         

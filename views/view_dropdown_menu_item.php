@@ -1,6 +1,11 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
+    
+    /*
+     * Prevent direct access
+     */
+    defined('ADAPT_STARTED') or die;
     
     class view_dropdown_menu_item extends view{
         

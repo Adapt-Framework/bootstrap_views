@@ -1,6 +1,6 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
     class view_form extends view{
         
@@ -86,7 +86,7 @@ namespace extensions\bootstrap_views{
         
         public function convert_form_group($form_group, $horizontal = true){
             
-            if ($horizontal && is_object($form_group) && $form_group instanceof \frameworks\adapt\html){
+            if ($horizontal && is_object($form_group) && $form_group instanceof \adapt\html){
                 $groups = $form_group->find('.form-group');
                 foreach($groups->get() as $group){
                     $label = $group->find('label');

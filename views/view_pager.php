@@ -1,6 +1,6 @@
 <?php
 
-namespace extentions\bootstrap{
+namespace bootstrap\views{
     
     class view_pager extends view{
         

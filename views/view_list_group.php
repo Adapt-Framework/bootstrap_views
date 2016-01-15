@@ -1,6 +1,6 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
     class view_list_group extends view {
         
@@ -18,14 +18,14 @@ namespace extensions\bootstrap_views{
             if ($content){
                 $item = new html_a(array('href' => $url, 'class' => 'list-group-item'));
                 if (!is_null($badge)){
-                    if (is_object($badge) && $badge instanceof frameworks\adapt\html){
+                    if (is_object($badge) && $badge instanceof \adapt\html){
                         $item->add($badge);
                     }elseif(!is_object($badge) && (is_string($badge) || is_int($badge))){
                         $item->add(new view_badge($badge));
                     }
                 }
                 
-                if ($content instanceof frameworks\adapt\html){
+                if ($content instanceof \adapt\html){
                     $content->find('h1,h2,h3,h4,h5,h6')->add_class('list-group-item-heading');
                     $content->find('p')->add_class('list-group-item-text');
                 }

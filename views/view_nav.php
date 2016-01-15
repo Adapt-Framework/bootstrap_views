@@ -1,6 +1,6 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
     class view_nav extends view{
         
@@ -33,7 +33,7 @@ namespace extensions\bootstrap_views{
             $this->find('.active')->remove_class('active');
             $children = $this->get();
             foreach($children as $child){
-                if ($child instanceof \frameworks\adapt\html){
+                if ($child instanceof \adapt\html){
                     if ($child->find('a')->text() == $item){
                         $child->add_class('active');
                         break;
@@ -57,7 +57,7 @@ namespace extensions\bootstrap_views{
         public function disabled_item($item){
             $children = $this->get();
             foreach($children as $child){
-                if ($child instanceof \frameworks\adapt\html){
+                if ($child instanceof \adapt\html){
                     if ($child->find('a')->text() == $item){
                         $child->add_class('disabled');
                         break;
@@ -69,7 +69,7 @@ namespace extensions\bootstrap_views{
         public function is_disabled($item){
             $children = $this->get();
             foreach($children as $child){
-                if ($child instanceof \frameworks\adapt\html){
+                if ($child instanceof \adapt\html){
                     if ($child->find('a')->text() == $item){
                         return $child->has_class('disabled');
                     }

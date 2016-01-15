@@ -1,13 +1,13 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
     abstract class view_input_multiple extends view{
         
         protected $_control;
         
         public function __construct($control, $label = null, $inline = false){
-            if (($control instanceof view_input || $control instanceof frameworks\adapt\html_input) && in_array($control->attr('type'), array('radio', 'checkbox'))){
+            if (($control instanceof view_input || $control instanceof \adapt\html_input) && in_array($control->attr('type'), array('radio', 'checkbox'))){
                 $type = $control->attr('type');
                 
                 if ($inline == true){

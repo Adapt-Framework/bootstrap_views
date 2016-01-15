@@ -1,6 +1,6 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
     class view_alert extends view{
         
@@ -67,9 +67,9 @@ namespace extensions\bootstrap_views{
              */
             if (is_array($items)) foreach($items as $item) $this->add($item);
             
-            if ($item instanceof frameworks\adapt\html_a){
+            if ($item instanceof \adapt\html_a){
                 $item->add_class('alert-link');
-            }elseif($item instanceof frameworks\adapt\html){
+            }elseif($item instanceof \adapt\html){
                 $item->find('a')->add_class('alert-link');
             }
             

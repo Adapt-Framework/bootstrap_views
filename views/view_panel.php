@@ -1,6 +1,6 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
     class view_panel extends view{
         
@@ -68,7 +68,7 @@ namespace extensions\bootstrap_views{
             if ($this->_heading->find('.panel-title')->size() > 0){
                 if (!is_object($title) && is_string($title) && $title != ""){
                     $this->_heading->find('.panel-title')->text($title);
-                }elseif(is_object($title) && $title instanceof \frameworks\adapt\html){
+                }elseif(is_object($title) && $title instanceof \adapt\html){
                     $this->_heading->find('.panel-title')->detach();
                     if (strlen($title->tag) == 2 && substr($title->tag, 0, 1) == 'h'){
                         $title->add_class('panel-title');
@@ -79,7 +79,7 @@ namespace extensions\bootstrap_views{
             }else{
                 if (!is_object($title) && is_string($title) && $title != ""){
                     $this->_heading->add(new html_h3($title, array('class' => 'panel-title')));
-                }elseif(is_object($title) && $title instanceof \frameworks\adapt\html){
+                }elseif(is_object($title) && $title instanceof \adapt\html){
                     if (strlen($title->tag) == 2 && substr($title->tag, 0, 1) == 'h'){
                         $title->add_class('panel-title');
                     }
@@ -104,7 +104,7 @@ namespace extensions\bootstrap_views{
         public function add($item){
             if (is_array($item)) foreach($item as $i) $this->add($i);
             
-            if (is_object($item) && $item instanceof \frameworks\adapt\html){
+            if (is_object($item) && $item instanceof \adapt\html){
                 if ($item->tag == 'table' && $item->has_class('table')){
                     parent::add($item);
                 }elseif($item instanceof view_list_group){

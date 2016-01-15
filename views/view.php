@@ -1,8 +1,8 @@
 <?php
 
-namespace extensions\bootstrap_views{
+namespace bootstrap\views{
     
-    class view extends \frameworks\adapt\view{
+    class view extends \adapt\view{
         
         const NONE = '';
         const FLOAT_RIGHT = 'pull-right';
