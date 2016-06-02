@@ -46,7 +46,7 @@ namespace bootstrap\views{
             return $this->has_class('nav-justified');
         }
         
-        public function pset_jusified($value){
+        public function pset_justified($value){
             if ($value === true){
                 $this->add_class('nav-justified');
             }else{

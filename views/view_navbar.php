@@ -189,7 +189,7 @@ namespace bootstrap\views{
             }elseif($name instanceof view_button){
                 $name->add_class('navbar-btn');
                 $this->find('.navbar-collapse')->append($name);
-            }elseif($name instanceof \frameworks\adapt\html && $name->tag == 'p'){
+            }elseif($name instanceof \adapt\html && $name->tag == 'p'){
                 $name->add_class('navbar-text');
                 $this->find('.navbar-collapse')->append($name);
             }elseif($name instanceof view_dropdown){
