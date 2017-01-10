@@ -3,6 +3,8 @@
   <bundle>
     <name>bootstrap_views</name>
     <namespace>\bootstrap\views</namespace>
+    <version_status>release</version_status>
+    <availability>public</availability>
     <label>Bootstrap views</label>
     <type>ui</type>
     <version>1.0.0</version>
