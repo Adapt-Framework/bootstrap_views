@@ -92,7 +92,21 @@ namespace bootstrap\views{
                 if (is_array($params[0])){
                     if (is_assoc($params[0])){
                         foreach($params[0] as $key => $value){
-                            parent::add(new html_option($value, array('value' => $key)));
+                            if (is_array($value)){
+                                $group = new html_optgroup(['label' => $key]);
+                                if (is_assoc($value)){
+                                    foreach($value as $item_label => $item_value){
+                                        $group->add(new html_option($item_label, ['value' => $item_value]));
+                                    }
+                                }else{
+                                    foreach($value as $val){
+                                        $group->add(new html_option($val));
+                                    }
+                                }
+                                parent::add($group);
+                            }else{
+                                parent::add(new html_option($value, array('value' => $key)));
+                            }
                         }
                     }else{
                         foreach($params[0] as $value){
