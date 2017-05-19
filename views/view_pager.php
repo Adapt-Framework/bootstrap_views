@@ -4,7 +4,7 @@ namespace bootstrap\views{
     
     class view_pager extends view{
         
-        public function __construct($next_label, $next_url, $next_disabled = false, $previous_label, $previous_url, $previous_disabled = false, $aligned = false){
+        public function __construct($next_label, $next_url, $next_disabled, $previous_label, $previous_url, $previous_disabled = false, $aligned = false){
             parent::__construct('nav');
             $this->remove_class('pager');
             $ul = new html_ul(array('class' => 'pager'));
