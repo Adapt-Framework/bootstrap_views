@@ -22,7 +22,7 @@ namespace bootstrap\views{
             
             if (!in_array($type, $supported_types)) $type = "text";
             
-            if (!is_array($type, array('file', 'radio', 'checkbox'))) $this->add_class('form-control');
+            if (!in_array($type, array('file', 'radio', 'checkbox'))) $this->add_class('form-control');
             
             $this->attr('type', $type);
             
