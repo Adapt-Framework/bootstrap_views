@@ -29,6 +29,8 @@ namespace bootstrap\views{
                 if ($post_addon instanceof view_button){
                     $class = 'input-group-btn';
                     $this->add(new html_div($post_addon, array('class' => $class)));
+                    //$post_addon->add_class($class);
+                    //$this->add($post_addon);
                 }elseif($post_addon instanceof view_dropdown){
                     $post_addon->remove_class('dropdown');
                     $post_addon->add_class('input-group-btn');

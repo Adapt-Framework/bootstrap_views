@@ -32,9 +32,9 @@ namespace bootstrap\views{
             }
             
             if ($current_page == 1){
-                $ul->add(new htmL_li(new html_a(new html_span('&laquo', array('aria-hidden' => 'true')), array('href' => sprintf($base_url, 1))), array('class' => 'disabled')));
+                $ul->add(new html_li(new html_a(new html_span('Previous', array('aria-hidden' => 'true')), array('href' => sprintf($base_url, 1))), array('class' => 'disabled')));
             }else{
-                $ul->add(new htmL_li(new html_a(new html_span('&laquo', array('aria-hidden' => 'true')), array('href' => sprintf($base_url, 1)))));
+                $ul->add(new html_li(new html_a(new html_span('Previous', array('aria-hidden' => 'true')), array('href' => sprintf($base_url, 1)))));
             }
             
             for($i = $first_page; $i <= $last_page; $i++){
@@ -46,9 +46,9 @@ namespace bootstrap\views{
             }
             
             if ($current_page == $last_page){
-                $ul->add(new htmL_li(new html_a(new html_span('&raquo', array('aria-hidden' => 'true')), array('href' => sprintf($base_url, 1))), array('class' => 'disabled')));
+                $ul->add(new html_li(new html_a(new html_span('Next', array('aria-hidden' => 'true')), array('href' => sprintf($base_url, $last_page))), array('class' => 'disabled')));
             }else{
-                $ul->add(new htmL_li(new html_a(new html_span('&raquo', array('aria-hidden' => 'true')), array('href' => sprintf($base_url, 1)))));
+                $ul->add(new html_li(new html_a(new html_span('Next', array('aria-hidden' => 'true')), array('href' => sprintf($base_url, $last_page)))));
             }
             
             $this->size = $size;
